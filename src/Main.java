@@ -54,12 +54,13 @@ public class Main {
                         "  >> Si obtienes 3 símbolos iguales = x10");
             }else if( selection == 3 ){
 
+                System.out.println("De momento estamos trabajando en ello");
+                System.out.println("Puedes jugar en la máquina pero aún no comprar nada");
                 System.out.println("Outfit Fruna......   400 monedas");
                 System.out.println("Outfit del Líder..   600 monedas");
                 System.out.println("Outfit del Mall...   800 monedas");
                 System.out.println("Outfit de Sastre..  1000 monedas");
                 System.out.println("Outfit de Oro.....  5000 monedas");
-
 
 
             }

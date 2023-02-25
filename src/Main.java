@@ -8,7 +8,7 @@ public class Main {
 
         boolean active = true;
 
-        System.out.println("__--Bienvenido a JavaMonedas--__");
+        System.out.println("__-- Bienvenido a JavaMonedas --__");
         System.out.println("Un juego de apuestas en el cual puedes mejorar tu Outfit");
         System.out.println( j.toString() );
 
@@ -17,7 +17,8 @@ public class Main {
             System.out.println("¿Que harás ahora?");
             System.out.println("1. Jugar");
             System.out.println("2. ¿Cómo jugar?");
-            System.out.println("3. Salir");
+            System.out.println("3. Ir a la tienda");
+            System.out.println("4. Salir");
 
             Scanner sc = new Scanner( System.in );
             int selection = Integer.parseInt( sc.nextLine() );
@@ -40,7 +41,7 @@ public class Main {
                     System.out.println(e);
                 }
 
-            }else if( selection  == 3 ){
+            }else if( selection  == 4 ){
                 System.out.println("Gracias por jugar JavaMonedas");
                 active = false;
             }else if( selection  == 2 ){
@@ -51,8 +52,22 @@ public class Main {
                         "En fin, ahora tengo que contarte sobre como funciona la máquina:\n"+
                         "  >> Si obtienes 2 símbolos iguales = x2 \n"+
                         "  >> Si obtienes 3 símbolos iguales = x10");
-            }
+            }else if( selection == 3 ){
 
+                System.out.println("Outfit Fruna......   400 monedas");
+                System.out.println("Outfit del Líder..   600 monedas");
+                System.out.println("Outfit del Mall...   800 monedas");
+                System.out.println("Outfit de Sastre..  1000 monedas");
+                System.out.println("Outfit de Oro.....  5000 monedas");
+
+
+
+            }
         }
     }
+
+
+
+
+
 }

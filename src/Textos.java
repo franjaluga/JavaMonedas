@@ -2,11 +2,10 @@ public class Textos {
 
     public static void printPantallaInicial(){
         System.out.println("__-- Bienvenido a JavaMonedas --__");
-        System.out.println("Un juego de apuestas en el cual puedes mejorar tu Outfit");
+        System.out.println("Un juego de apuestas en el que puedes ganar o perderlo todo");
     }
 
     public static void printMenu(){
-
         System.out.println("========================");
         System.out.println("¿Que harás ahora?");
         System.out.println("1. Jugar");
@@ -16,7 +15,7 @@ public class Textos {
     }
 
     public static void printAnimationTextJugar() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         System.out.println("* pusiste una moneda *");
         Thread.sleep(1000);
         System.out.println("* cling *");

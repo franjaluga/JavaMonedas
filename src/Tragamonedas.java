@@ -4,6 +4,7 @@ public class Tragamonedas {
     String slot1;
     String slot2;
     String slot3;
+    int bonus;
 
     double random1;
     double random2;
@@ -38,6 +39,14 @@ public class Tragamonedas {
 
     public void setSlot3(String s3) {
         this.slot3 = s3;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
     }
 
     public double getNewRandom0to4(){
@@ -91,7 +100,7 @@ public class Tragamonedas {
         return e;
     }
 
-    public String getThreeSlot(){
+    public String getThreeSlot( int apuesta){
 
         String s1 = this.getOneSlot();
         String s2 = this.getOneSlot();
@@ -100,13 +109,14 @@ public class Tragamonedas {
         String texto = "[" + s1 + "]" +  "[" + s2 + "]" + "[" + s3 + "]";
 
         if( s1 == s2 && s2 == s3 ){
+            this.setBonus( apuesta * 10 );
             System.out.println("***********************");
-            System.out.println("Felicidades, ganaste!");
+            System.out.println("Felicidades, ganaste: " + this.getBonus());
             System.out.println("***********************");
         }else{
             if(s1 == s2 || s1 == s3 || s2 == s3){
-                System.out.println("-----> Casi le atinas... sigue intentando...");
-
+                this.setBonus( apuesta * 2 );
+                System.out.println("-----> Atinaste a 2, ganaste: " + this.getBonus() );
             }
         }
 

@@ -7,22 +7,38 @@ public class Main {
 
     public static void gameloop(){
         Jugador j = new Jugador();
+        j.setMonedero( 100 );
         Textos.printPantallaInicial();
-        menu(j);
+
+        if( j.monedero >= 0 ){
+            menu(j);
+
+        }else{
+            System.out.println("Se te acabaron las monedas, y te hecharon a patadas de la máquina");
+            System.exit(0);
+        }
     }
 
     public static void menu(Jugador j){
-
         System.out.println( j.toString() );
         Tragamonedas tragamonedas = new Tragamonedas();
 
-        while ( tragamonedas.isActive() ){
-            loop( tragamonedas );
-        }
+        cuantoApostar(j);
 
+        while ( tragamonedas.isActive() ){
+            loop( tragamonedas, j );
+        }
     }
 
-    public static void loop( Tragamonedas tragamonedas ){
+    public static void cuantoApostar(Jugador j){
+        System.out.println("Ingresa tu apuesta:");
+        Scanner sc = new Scanner( System.in );
+        j.setApuestaActual( sc.nextInt() );
+
+        System.out.println("Tu apuesta fue de: " + j.getApuestaActual() );
+    }
+
+    public static void loop( Tragamonedas tragamonedas, Jugador j ){
 
         Textos.printMenu();
 
@@ -30,7 +46,7 @@ public class Main {
         int selection = Integer.parseInt( sc.nextLine() );
 
         if(  selection == 1 ){
-            selectionOne( tragamonedas );
+            selectionOne( tragamonedas, j );
 
         }else if( selection  == 4 ){
             System.out.println("Gracias por jugar JavaMonedas");
@@ -44,16 +60,20 @@ public class Main {
         }
     }
 
-    public static void selectionOne( Tragamonedas tragamonedas ){
+    public static void selectionOne( Tragamonedas tragamonedas, Jugador j ){
         System.out.println("Escogió jugar");
+
         try {
+            j.setMonedero((int) ( j.getMonedero() - j.getApuestaActual() ) );
             Textos.printAnimationTextJugar();
-            System.out.println( tragamonedas.getThreeSlot() );
+            System.out.println( tragamonedas.getThreeSlot( j.getApuestaActual() ) );
+            j.setMonedero( (int) ( j.getMonedero() + tragamonedas.getBonus() ) );
+            tragamonedas.setBonus( 0 );
+            System.out.println( j.toString() );
 
         } catch (Exception e) {
             System.out.println( e.getMessage() );
         }
     }
-
 
 }

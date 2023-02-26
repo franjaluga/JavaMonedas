@@ -4,6 +4,8 @@ public class Jugador {
     String hands;
     String legs;
     String foot;
+    int monedero;
+    int apuestaActual;
 
     public Jugador(){
         this.head = "...";
@@ -53,14 +55,30 @@ public class Jugador {
         this.foot = foot;
     }
 
+    public double getMonedero() {
+        return monedero;
+    }
+
+    public void setMonedero(int monedero) {
+        this.monedero = monedero;
+    }
+
+    public int getApuestaActual() {
+        return apuestaActual;
+    }
+
+    public void setApuestaActual(int apuestaActual) {
+        this.apuestaActual = apuestaActual;
+    }
 
     @Override
     public String toString() {
-        return "{ Tu Outfit actual es }\n" +
-                "Cabeza  :" + head + '\n' +
-                "Cuerpo  :" + chest + '\n' +
-                "Manos   :" + hands + '\n' +
-                "Piernas :" + legs + '\n' +
-                "Pies    :" + foot + '\n';
+        return "{ Monedas: " + this.monedero + "}\n"+
+                "{ Tu Outfit actual es }\n" +
+                "Cabeza  :" + this.head + '\n' +
+                "Cuerpo  :" + this.chest + '\n' +
+                "Manos   :" + this.hands + '\n' +
+                "Piernas :" + this.legs + '\n' +
+                "Pies    :" + this.foot + '\n';
     }
 }

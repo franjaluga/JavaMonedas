@@ -2,73 +2,58 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        gameloop();
+    }
 
-        Tragamonedas tragamonedas = new Tragamonedas();
+    public static void gameloop(){
         Jugador j = new Jugador();
+        Textos.printPantallaInicial();
+        menu(j);
+    }
 
-        boolean active = true;
+    public static void menu(Jugador j){
 
-        System.out.println("__-- Bienvenido a JavaMonedas --__");
-        System.out.println("Un juego de apuestas en el cual puedes mejorar tu Outfit");
         System.out.println( j.toString() );
+        Tragamonedas tragamonedas = new Tragamonedas();
 
-        while ( active ){
-            System.out.println("========================");
-            System.out.println("¿Que harás ahora?");
-            System.out.println("1. Jugar");
-            System.out.println("2. ¿Cómo jugar?");
-            System.out.println("3. Ir a la tienda");
-            System.out.println("4. Salir");
+        while ( tragamonedas.isActive() ){
+            loop( tragamonedas );
+        }
 
-            Scanner sc = new Scanner( System.in );
-            int selection = Integer.parseInt( sc.nextLine() );
+    }
 
-            if(  selection == 1 ){
-                System.out.println("Escogió jugar");
-                try {
-                    Thread.sleep(2000);
-                    System.out.println("* pusiste una moneda *");
-                    Thread.sleep(1000);
-                    System.out.println("* cling *");
-                    Thread.sleep(1000);
-                    System.out.println("* ¡la máquina comienza a funcionar! *");
-                    Thread.sleep(1000);
-                    System.out.println("Tus resultados son:\n");
-                    Thread.sleep(1000);
-                    System.out.println( tragamonedas.getThreeSlot() );
+    public static void loop( Tragamonedas tragamonedas ){
 
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
+        Textos.printMenu();
 
-            }else if( selection  == 4 ){
-                System.out.println("Gracias por jugar JavaMonedas");
-                active = false;
-            }else if( selection  == 2 ){
-                System.out.println("El juego funciona con monedas\n"+
-                        "las cuales debes apostar para obtener más.\n"+
-                        "Con las monedas puedes mejorar tu Outfit,\n"+
-                        "Así que puedes pasarte por la tienda, comprarlas y usarlas\n"+
-                        "En fin, ahora tengo que contarte sobre como funciona la máquina:\n"+
-                        "  >> Si obtienes 2 símbolos iguales = x2 \n"+
-                        "  >> Si obtienes 3 símbolos iguales = x10");
-            }else if( selection == 3 ){
+        Scanner sc = new Scanner( System.in );
+        int selection = Integer.parseInt( sc.nextLine() );
 
-                System.out.println("De momento estamos trabajando en ello");
-                System.out.println("Puedes jugar en la máquina pero aún no comprar nada");
-                System.out.println("Outfit Fruna......   400 monedas");
-                System.out.println("Outfit del Líder..   600 monedas");
-                System.out.println("Outfit del Mall...   800 monedas");
-                System.out.println("Outfit de Sastre..  1000 monedas");
-                System.out.println("Outfit de Oro.....  5000 monedas");
+        if(  selection == 1 ){
+            selectionOne( tragamonedas );
 
+        }else if( selection  == 4 ){
+            System.out.println("Gracias por jugar JavaMonedas");
+            tragamonedas.setActive(false);
 
-            }
+        }else if( selection  == 2 ){
+            Textos.printHowToPlay();
+
+        }else if( selection == 3 ){
+            Textos.printTienda();
         }
     }
 
+    public static void selectionOne( Tragamonedas tragamonedas ){
+        System.out.println("Escogió jugar");
+        try {
+            Textos.printAnimationTextJugar();
+            System.out.println( tragamonedas.getThreeSlot() );
 
-
+        } catch (Exception e) {
+            System.out.println( e.getMessage() );
+        }
+    }
 
 
 }

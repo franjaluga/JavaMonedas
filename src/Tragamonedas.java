@@ -1,5 +1,6 @@
 public class Tragamonedas {
 
+    boolean active;
     String slot1;
     String slot2;
     String slot3;
@@ -12,6 +13,7 @@ public class Tragamonedas {
         this.slot1 = "";
         this.slot2 = "";
         this.slot3 = "";
+        this.active = true;
     }
 
     public String getSlot1(){
@@ -55,7 +57,15 @@ public class Tragamonedas {
         return this.convertingSlot( d );
     }
 
-    public String convertingSlot( Double d){
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String convertingSlot(Double d){
         String e = null;
 
         if(d == 0){

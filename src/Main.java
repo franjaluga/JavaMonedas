@@ -2,41 +2,49 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        gameloop();
+        gameLoop();
     }
 
-    public static void gameloop(){
+    public static void gameLoop(){
         Jugador j = new Jugador();
+        Tragamonedas tragamonedas = new Tragamonedas();
+
         j.setMonedero( 100 );
         Textos.printPantallaInicial();
 
         if( j.monedero >= 0 ){
             menu(j);
+            apostar(j);
+            hasEnoughtMoney( tragamonedas, j );
 
         }else{
-            System.out.println("Se te acabaron las monedas, y te hecharon a patadas de la máquina");
-            System.exit(0);
+            endGame();
         }
     }
 
-    public static void menu(Jugador j){
+    public static void menu( Jugador j ){
         System.out.println( j.toString() );
-        Tragamonedas tragamonedas = new Tragamonedas();
-
-        cuantoApostar(j);
-
-        while ( tragamonedas.isActive() ){
-            loop( tragamonedas, j );
-        }
     }
 
-    public static void cuantoApostar(Jugador j){
+    public static void apostar( Jugador j){
         System.out.println("Ingresa tu apuesta:");
         Scanner sc = new Scanner( System.in );
         j.setApuestaActual( sc.nextInt() );
-
         System.out.println("Tu apuesta fue de: " + j.getApuestaActual() );
     }
+
+
+    public static void hasEnoughtMoney( Tragamonedas tragamonedas, Jugador j ){
+        if( j.getApuestaActual() <= j.getMonedero() ){
+            while ( tragamonedas.isActive() ){
+                loop( tragamonedas, j );
+            }
+        }else{
+            System.out.println("No te alcanza para apostar más");
+            endGame();
+        }
+    }
+
 
     public static void loop( Tragamonedas tragamonedas, Jugador j ){
 
@@ -64,7 +72,7 @@ public class Main {
         System.out.println("Escogió jugar");
 
         try {
-            j.setMonedero((int) ( j.getMonedero() - j.getApuestaActual() ) );
+            j.setMonedero( (int) ( j.getMonedero() - j.getApuestaActual() ) );
             Textos.printAnimationTextJugar();
             System.out.println( tragamonedas.getThreeSlot( j.getApuestaActual() ) );
             j.setMonedero( (int) ( j.getMonedero() + tragamonedas.getBonus() ) );
@@ -76,4 +84,8 @@ public class Main {
         }
     }
 
+    public static void endGame(){
+        Textos.printKicked();
+        System.exit(0);
+    }
 }

@@ -46,4 +46,7 @@ public class Textos {
         System.out.println("Outfit de Oro.....  5000 monedas");
     }
 
+    public static void printKicked(){
+        System.out.println("Se te acabaron las monedas, y te hecharon a patadas de la máquina");
+    }
 }

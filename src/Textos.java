@@ -47,6 +47,6 @@ public class Textos {
     }
 
     public static void printKicked(){
-        System.out.println("Se te acabaron las monedas, y te hecharon a patadas de la máquina");
+        System.out.println("Te hecharon a patadas de la máquina");
     }
 }

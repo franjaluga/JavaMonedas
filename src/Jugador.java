@@ -13,6 +13,7 @@ public class Jugador {
         this.hands = "...";
         this.legs = "Pantalón Buzo";
         this.foot = "Chalas";
+        this.monedero = 100;
     }
 
     public String getHead() {

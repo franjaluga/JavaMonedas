@@ -2,85 +2,90 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        gameLoop();
+        newGameLoop();
     }
 
-    public static void gameLoop(){
+
+    public static void newGameLoop(){
+
         Jugador j = new Jugador();
-        Tragamonedas tragamonedas = new Tragamonedas();
+        Tragamonedas t = new Tragamonedas();
 
-        j.setMonedero( 100 );
-        Textos.printPantallaInicial();
+        vistaInicial( j );
+        menu( t , j );
 
-        if( j.monedero >= 0 ){
-            menu(j);
-            apostar(j);
-            hasEnoughtMoney( tragamonedas, j );
-
-        }else{
-            endGame();
-        }
     }
 
-    public static void menu( Jugador j ){
+    public static void vistaInicial( Jugador j ){
+        Textos.printPantallaInicial();
         System.out.println( j.toString() );
     }
 
-    public static void apostar( Jugador j){
-        System.out.println("Ingresa tu apuesta:");
-        Scanner sc = new Scanner( System.in );
-        j.setApuestaActual( sc.nextInt() );
-        System.out.println("Tu apuesta fue de: " + j.getApuestaActual() );
-    }
 
-
-    public static void hasEnoughtMoney( Tragamonedas tragamonedas, Jugador j ){
-        if( j.getApuestaActual() <= j.getMonedero() ){
-            while ( tragamonedas.isActive() ){
-                loop( tragamonedas, j );
-            }
-        }else{
-            System.out.println("No te alcanza para apostar más");
-            endGame();
-        }
-    }
-
-
-    public static void loop( Tragamonedas tragamonedas, Jugador j ){
+    public static void menu( Tragamonedas t, Jugador j ){
 
         Textos.printMenu();
 
         Scanner sc = new Scanner( System.in );
         int selection = Integer.parseInt( sc.nextLine() );
 
-        if(  selection == 1 ){
-            selectionOne( tragamonedas, j );
-
-        }else if( selection  == 4 ){
-            System.out.println("Gracias por jugar JavaMonedas");
-            tragamonedas.setActive(false);
-
-        }else if( selection  == 2 ){
-            Textos.printHowToPlay();
-
-        }else if( selection == 3 ){
-            Textos.printTienda();
+        switch ( selection ) {
+            case 1:
+                selectionOne( t, j );
+                break;
+            case 2:
+                Textos.printHowToPlay();
+                menu( t , j);
+                break;
+            case 3:
+                Textos.printTienda();
+                menu( t , j);
+                break;
+            case 4:
+                System.out.println("Gracias por jugar JavaMonedas");
+                endGame();
+                break;
         }
     }
 
-    public static void selectionOne( Tragamonedas tragamonedas, Jugador j ){
+    public static void selectionOne( Tragamonedas t, Jugador j ){
         System.out.println("Escogió jugar");
 
         try {
-            j.setMonedero( (int) ( j.getMonedero() - j.getApuestaActual() ) );
+            tryApostar( j );
             Textos.printAnimationTextJugar();
-            System.out.println( tragamonedas.getThreeSlot( j.getApuestaActual() ) );
-            j.setMonedero( (int) ( j.getMonedero() + tragamonedas.getBonus() ) );
-            tragamonedas.setBonus( 0 );
+            System.out.println( t.getThreeSlot( j.getApuestaActual() ) );
+            j.setMonedero( (int) ( j.getMonedero() + t.getBonus() ) );
+            t.setBonus( 0 );
             System.out.println( j.toString() );
+            checkMoney( t , j );
 
-        } catch (Exception e) {
+        } catch ( Exception e ) {
             System.out.println( e.getMessage() );
+        }
+    }
+
+    public static void checkMoney( Tragamonedas t , Jugador j ){
+        if( j.getMonedero() <= 0 ){
+            endGame();
+        }else{
+            menu( t, j );
+        }
+    }
+
+    public static void tryApostar( Jugador j ){
+        System.out.println("Ingresa tu apuesta:");
+        Scanner sc = new Scanner( System.in );
+        int apostadas = sc.nextInt();
+
+        if( j.getMonedero() < apostadas ){
+            System.out.println("no tienes suficientes monedas, intenta apostar menos");
+            System.out.println("tienes: " + j.getMonedero() + " monedas");
+            tryApostar( j );
+        }else{
+            j.setApuestaActual( apostadas );
+            j.setMonedero( (int) (j.getMonedero() - j.getApuestaActual() ) );
+            System.out.println("Tu apuesta fue de: " + j.getApuestaActual() );
         }
     }
 

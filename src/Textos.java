@@ -37,13 +37,14 @@ public class Textos {
     }
 
     public static void printTienda(){
-        System.out.println("De momento estamos trabajando en ello");
-        System.out.println("Puedes jugar en la máquina pero aún no comprar nada");
-        System.out.println("Outfit Fruna......   400 monedas");
-        System.out.println("Outfit del Líder..   600 monedas");
-        System.out.println("Outfit del Mall...   800 monedas");
-        System.out.println("Outfit de Sastre..  1000 monedas");
-        System.out.println("Outfit de Oro.....  5000 monedas");
+        System.out.println("Bienvenido a la tienda, ¿Que tipo de prenda buscas?: ");
+        String[] things = {"1. Cabeza","2. Cuerpo","3. Manos","4. Piernas","5. Pies"};
+
+        for( int i = 0; i < 4; i++){
+            System.out.println(things[i]);
+        }
+
+        System.out.println("Ups!, de momento no te podemos vender nada, vuelve más tarde");
     }
 
     public static void printKicked(){

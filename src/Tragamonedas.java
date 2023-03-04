@@ -78,23 +78,23 @@ public class Tragamonedas {
         String e = null;
 
         if(d == 0){
-            e = " * ";
+            e = "--- 7 ---";
         }
 
         if(d == 1){
-            e = " + ";
+            e = "-HuevitoREY-";
         }
 
         if(d == 2){
-            e = " / ";
+            e = "-ChangoEnMoto!-";
         }
 
         if(d == 3){
-            e = " - ";
+            e = "--- (°-°)7--";
         }
 
         if(d == 4){
-            e = " x ";
+            e = "--Omaigasd!--";
         }
 
         return e;

@@ -43,8 +43,6 @@ public class Textos {
         for( int i = 0; i < 4; i++){
             System.out.println(things[i]);
         }
-
-        System.out.println("Ups!, de momento no te podemos vender nada, vuelve más tarde");
     }
 
     public static void printKicked(){

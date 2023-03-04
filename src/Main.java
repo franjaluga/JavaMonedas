@@ -38,7 +38,7 @@ public class Main {
                 menu( t , j);
                 break;
             case 3:
-                tiendaMenu();
+                tiendaMenu( j );
                 menu( t , j);
                 break;
             case 4:
@@ -89,7 +89,7 @@ public class Main {
         }
     }
 
-    public static void tiendaMenu(){
+    public static void tiendaMenu( Jugador j ){
         Textos.printTienda();
         Scanner tsc = new Scanner(System.in);
         int selectionInShop = tsc.nextInt();
@@ -97,31 +97,15 @@ public class Main {
         switch( selectionInShop ){
             case 1:
                 System.out.println("escogió cabeza");
-                menuCabeza();
-                break;
-            case 2:
-                System.out.println("escogió cuerpo");
-                menuCuerpo();
-                break;
-            case 3:
-                System.out.println("escogió manos");
-                menuManos();
-                break;
-            case 4:
-                System.out.println("escogió piernas");
-                menuPiernas();
-                break;
-            case 5:
-                System.out.println("escogió pies");
-                menuPies();
+                menuCabeza( j );
                 break;
             default:
-                tiendaMenu();
+                tiendaMenu( j );
                 break;
         }
     }
 
-    public static void menuCabeza(){
+    public static void menuCabeza( Jugador j ){
         String[] things = {
                 "1. Gorrito de papel............   100 monedas",
                 "2. Gorro de vaquero............   500 monedas",
@@ -139,82 +123,71 @@ public class Main {
 
         System.out.println("seleccionó " + clotheSelected );
 
-    }
-
-    public static void menuCuerpo(){
-        String[] things = {
-                "1. Camisa Hawaiana.............   150 monedas",
-                "2. Polera de perrito...........   450 monedas",
-                "3. Camisa estampada............   990 monedas",
-                "4. Abrigo de pieles............  5000 monedas",
-                "5. Chaqueta de oro............. 25000 monedas"
-        };
-
-        for( int i = 0; i < 4; i++){
-            System.out.println(things[i]);
+        switch( clotheSelected ){
+            case 1:
+                tryBuy( 100 , j );
+                break;
+            case 2:
+                tryBuy( 500 , j );
+                break;
+            case 3:
+                tryBuy( 1000 , j );
+                break;
+            case 4:
+                tryBuy( 5000 , j );
+                break;
+            case 5:
+                tryBuy( 10000 , j );
+                break;
         }
 
-        Scanner sc = new Scanner(System.in);
-        int clotheSelected = sc.nextInt();
-
-        System.out.println("seleccionó " + clotheSelected );
     }
 
-    public static void menuManos(){
-        String[] things = {
-                "1. Anillo de cobre.............  110 monedas",
-                "2. Reloj con manecillas de pez.  120 monedas",
-                "3. Guantes blancos.............  200 monedas",
-                "4. Cigarro a medio fumar.......  500 monedas",
-                "5. Guantes de oro.............. 1000 monedas"
-        };
+    public static void tryBuy( int value, Jugador j ){
 
-        for( int i = 0; i < 4; i++){
-            System.out.println(things[i]);
+        switch( value ){
+            case 100:
+                if( j.getMonedero() > value ){
+                    j.setHead("Gorrito de papel");
+                    j.setMonedero((int) (j.getMonedero() - value));
+                    System.out.println("Equipaste: " + j.getHead());
+                }else{
+                    System.out.println("no te alcanza");
+                }
+                break;
+            case 500:
+                if( j.getMonedero() > value ){
+                    j.setHead("Gorrito de vaquero");
+                    j.setMonedero((int) (j.getMonedero() - value));
+                }else{
+                    System.out.println("no te alcanza");
+                }
+                break;
+            case 1000:
+                if( j.getMonedero() > value ){
+                    j.setHead("Gorrito de psíquico");
+                    j.setMonedero((int) (j.getMonedero() - value));
+                }else{
+                    System.out.println("no te alcanza");
+                }
+                break;
+            case 5000:
+                if( j.getMonedero() > value ){
+                    j.setHead("Cabeza de caballo plástica");
+                    j.setMonedero((int) (j.getMonedero() - value));
+                }else{
+                    System.out.println("no te alcanza");
+                }
+                break;
+            case 10000:
+                if( j.getMonedero() > value ){
+                    j.setHead("Gorro de oro");
+                    j.setMonedero((int) (j.getMonedero() - value));
+                }else{
+                    System.out.println("no te alcanza");
+                }
+                break;
         }
-
-        Scanner sc = new Scanner(System.in);
-        int clotheSelected = sc.nextInt();
-
-        System.out.println("seleccionó " + clotheSelected );
-    }
-
-    public static void menuPiernas(){
-        String[] things = {
-                "1. Pantalón de cuero...........    500 monedas",
-                "2. Shorts de mezclilla.........    600 monedas",
-                "3. Falda pantalón..............    700 monedas",
-                "4. Bermudas de plumas..........   5000 monedas",
-                "5. Tanga de oro................  10000 monedas"
-        };
-
-        for( int i = 0; i < 4; i++){
-            System.out.println(things[i]);
-        }
-
-        Scanner sc = new Scanner(System.in);
-        int clotheSelected = sc.nextInt();
-
-        System.out.println("seleccionó " + clotheSelected );
-    }
-
-    public static void menuPies(){
-        String[] things = {
-                "1. Zapatos negros..............    200 monedas",
-                "2. Chalas de goma..............    300 monedas",
-                "3. Botas de cuero..............    560 monedas",
-                "4. Tacones brillantes..........   2000 monedas",
-                "5. Plataformas de oro..........  30000 monedas"
-        };
-
-        for( int i = 0; i < 4; i++){
-            System.out.println(things[i]);
-        }
-
-        Scanner sc = new Scanner(System.in);
-        int clotheSelected = sc.nextInt();
-
-        System.out.println("seleccionó " + clotheSelected );
     }
 
     public static void endGame(){

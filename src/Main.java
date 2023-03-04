@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         newGameLoop();
     }
-
 
     public static void newGameLoop(){
 
@@ -91,18 +90,8 @@ public class Main {
 
     public static void tiendaMenu( Jugador j ){
 
-        Scanner tsc = new Scanner(System.in);
-        int selectionInShop = tsc.nextInt();
+        menuCabeza( j );
 
-        switch( selectionInShop ){
-            case 1:
-                System.out.println("escogió cabeza");
-                menuCabeza( j );
-                break;
-            default:
-                tiendaMenu( j );
-                break;
-        }
     }
 
     public static void menuCabeza( Jugador j ){
@@ -147,7 +136,7 @@ public class Main {
 
         switch( value ){
             case 100:
-                if( j.getMonedero() > value ){
+                if( j.getMonedero() >= value ){
                     j.setHead("Gorrito de papel");
                     j.setMonedero((int) (j.getMonedero() - value));
                     System.out.println("Equipaste: " + j.getHead());
@@ -156,7 +145,7 @@ public class Main {
                 }
                 break;
             case 500:
-                if( j.getMonedero() > value ){
+                if( j.getMonedero() >= value ){
                     j.setHead("Gorrito de vaquero");
                     j.setMonedero((int) (j.getMonedero() - value));
                 }else{
@@ -164,7 +153,7 @@ public class Main {
                 }
                 break;
             case 1000:
-                if( j.getMonedero() > value ){
+                if( j.getMonedero() >= value ){
                     j.setHead("Gorrito de psíquico");
                     j.setMonedero((int) (j.getMonedero() - value));
                 }else{
@@ -172,7 +161,7 @@ public class Main {
                 }
                 break;
             case 5000:
-                if( j.getMonedero() > value ){
+                if( j.getMonedero() >= value ){
                     j.setHead("Cabeza de caballo plástica");
                     j.setMonedero((int) (j.getMonedero() - value));
                 }else{
@@ -180,7 +169,7 @@ public class Main {
                 }
                 break;
             case 10000:
-                if( j.getMonedero() > value ){
+                if( j.getMonedero() >= value ){
                     j.setHead("Gorro de oro");
                     j.setMonedero((int) (j.getMonedero() - value));
                 }else{

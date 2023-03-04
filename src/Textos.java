@@ -29,20 +29,12 @@ public class Textos {
     public static void printHowToPlay(){
         System.out.println("El juego funciona con monedas\n"+
                 "las cuales debes apostar para obtener más.\n"+
-                "Con las monedas puedes mejorar tu Outfit,\n"+
-                "Así que puedes pasarte por la tienda, comprarlas y usarlas\n"+
+                "Con las monedas puedes comprar gorros estilosos,\n"+
+                "Así que puedes pasarte por la tienda más tarde\n"+
+                ">>>"+
                 "En fin, ahora tengo que contarte sobre como funciona la máquina:\n"+
                 "  >> Si obtienes 2 símbolos iguales = x2 \n"+
                 "  >> Si obtienes 3 símbolos iguales = x10");
-    }
-
-    public static void printTienda(){
-        System.out.println("Bienvenido a la tienda, ¿Que tipo de prenda buscas?: ");
-        String[] things = {"1. Cabeza","2. Cuerpo","3. Manos","4. Piernas","5. Pies"};
-
-        for( int i = 0; i < 4; i++){
-            System.out.println(things[i]);
-        }
     }
 
     public static void printKicked(){

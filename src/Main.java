@@ -90,7 +90,7 @@ public class Main {
     }
 
     public static void tiendaMenu( Jugador j ){
-        Textos.printTienda();
+
         Scanner tsc = new Scanner(System.in);
         int selectionInShop = tsc.nextInt();
 
